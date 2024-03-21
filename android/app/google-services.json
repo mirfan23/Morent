@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "131484116902",
+    "project_id": "fluttertoko",
+    "storage_bucket": "fluttertoko.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:131484116902:android:54d15fbfeec2eafca39167",
+        "android_client_info": {
+          "package_name": "com.irfan.toko_paerbe"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqDMErcB9K0LCiZE_V9sXbROAeowd5QsI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
