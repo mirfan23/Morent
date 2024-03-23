@@ -15,6 +15,7 @@ abstract class Routes {
   static const TRANSACTION_HISTORY = _Paths.TRANSACTION_HISTORY;
   static const CART = _Paths.CART;
   static const MY_TOKEN = _Paths.MY_TOKEN;
+  static const DETAIL_MOVIE = _Paths.DETAIL_MOVIE;
 }
 
 abstract class _Paths {
@@ -29,4 +30,5 @@ abstract class _Paths {
   static const TRANSACTION_HISTORY = '/transaction-history';
   static const CART = '/cart';
   static const MY_TOKEN = '/my-token';
+  static const DETAIL_MOVIE = '/detail-movie';
 }

@@ -49,7 +49,7 @@ class LoginView extends GetView<LoginController> {
               ),
               TextButton(
                 onPressed: () => Get.toNamed(AppPages.REGISTER),
-                child: Text('Register'),
+                child: const Text('Register'),
               )
             ],
           ),

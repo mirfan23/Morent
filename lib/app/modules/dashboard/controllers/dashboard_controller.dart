@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:morent/app/modules/home/controllers/home_controller.dart';
 import 'package:morent/app/modules/home/views/home_view.dart';
 import 'package:morent/app/modules/my_token/controllers/my_token_controller.dart';
 import 'package:morent/app/modules/search/views/search_view.dart';
@@ -9,6 +10,7 @@ import 'package:morent/app/modules/wishlist/views/wishlist_view.dart';
 class DashboardController extends GetxController {
   var selectedIndex = 0.obs;
   late MyTokenController myTokenController;
+  late HomeController homeController;
 
   final List<Widget> pages = [
     const HomeView(),
@@ -20,6 +22,7 @@ class DashboardController extends GetxController {
   @override
   void onInit() {
     myTokenController = Get.put(MyTokenController());
+    homeController = Get.put(HomeController());
     super.onInit();
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:morent/app/modules/login/controllers/login_controller.dart';
+import 'package:morent/app/routes/app_pages.dart';
 
 class SplashScreenController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -16,13 +17,12 @@ class SplashScreenController extends GetxController
 
   @override
   void onInit() {
-    loginController = Get.put(LoginController());
-
     super.onInit();
+    loginController = Get.put(LoginController());
 
     animationController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 1),
+      duration: const Duration(seconds: 1),
     );
 
     Tween<double> yellowRotationTween =
@@ -45,13 +45,13 @@ class SplashScreenController extends GetxController
       update();
     });
 
-    animationController.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        loginController.handleAuth();
-      }
-    });
+    // animationController
+    //     .forward()
+    //     .then((value) => loginController.checkLoginStatus());
 
-    animationController.forward();
+    animationController
+        .forward()
+        .then((value) => Get.offAllNamed(AppPages.LOGIN));
   }
 
   @override

@@ -1,11 +1,11 @@
-// ignore_for_file: constant_identifier_names
-
 import 'package:get/get.dart';
 
-import '../modules/dashboard/bindings/dashboard_binding.dart';
-import '../modules/dashboard/views/dashboard.dart';
 import '../modules/cart/bindings/cart_binding.dart';
 import '../modules/cart/views/cart_view.dart';
+import '../modules/dashboard/bindings/dashboard_binding.dart';
+import '../modules/dashboard/views/dashboard_view.dart';
+import '../modules/detail_movie/bindings/detail_movie_binding.dart';
+import '../modules/detail_movie/views/detail_movie_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -23,6 +23,8 @@ import '../modules/transaction_history/views/transaction_history_view.dart';
 import '../modules/wishlist/bindings/wishlist_binding.dart';
 import '../modules/wishlist/views/wishlist_view.dart';
 
+// ignore_for_file: constant_identifier_names
+
 part 'app_routes.dart';
 
 class AppPages {
@@ -38,6 +40,7 @@ class AppPages {
   static const DASHBOARD = Routes.DASHBOARD;
   static const CART = Routes.CART;
   static const MY_TOKEN = Routes.MY_TOKEN;
+  static const DETAIL_MOVIE = Routes.DETAIL_MOVIE;
 
   static final routes = [
     GetPage(
@@ -62,8 +65,8 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DASHBOARD,
-      page: () => const BottomNavView(),
-      binding: BottomNavBinding(),
+      page: () => const DashboardView(),
+      binding: DashboardBinding(),
     ),
     GetPage(
       name: _Paths.SEARCH,
@@ -89,6 +92,11 @@ class AppPages {
       name: _Paths.MY_TOKEN,
       page: () => const MyTokenView(),
       binding: MyTokenBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_MOVIE,
+      page: () => const DetailMovieView(),
+      binding: DetailMovieBinding(),
     ),
   ];
 }

@@ -1,5 +1,6 @@
 // ignore_for_file: unused_local_variable
 
+import 'package:hive/hive.dart';
 import 'package:morent/app/routes/app_pages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -7,20 +8,28 @@ import 'package:get/get.dart';
 
 class LoginController extends GetxController {
   final FirebaseAuth auth = FirebaseAuth.instance;
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  final count = 0.obs;
+  late Box<String> hiveBox;
+
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
+    await openHiveBox();
   }
 
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
+    hiveBox.close();
     super.dispose();
+  }
+
+  Future<void> openHiveBox() async {
+    hiveBox = await Hive.openBox<String>('userBox');
   }
 
   Future<void> loginWithEmailAndPassword(
@@ -30,13 +39,15 @@ class LoginController extends GetxController {
         email: emailRegister,
         password: passwordRegister,
       );
+      String uid = userCredential.user!.uid;
+      await hiveBox.put('uid', uid.hashCode.toString());
       Get.defaultDialog(
         title: 'Login Berhasil',
-        onConfirm: () => Get.back(),
+        content: const Text(""),
+        onConfirm: () => Get.offAllNamed(AppPages.DASHBOARD),
       );
       emailController.clear();
       passwordController.clear();
-      Get.offAllNamed(AppPages.DASHBOARD);
     } catch (e) {
       Get.snackbar(
         'Error',
@@ -46,23 +57,31 @@ class LoginController extends GetxController {
     }
   }
 
-  handleAuth() {
-    return StreamBuilder<User?>(
-      stream: auth.authStateChanges(),
-      builder: (BuildContext context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator();
-        } else {
-          Future.microtask(() {
-            if (snapshot.hasData) {
-              Get.offAllNamed(AppPages.DASHBOARD);
-            } else {
-              Get.offAllNamed(AppPages.LOGIN);
-            }
-          });
-          return const SizedBox();
-        }
-      },
-    );
+  Future<void> checkLoginStatus() async {
+    String? uid = hiveBox.get('uid');
+    if (uid != null) {
+      bool userExist = await isUserExist(uid);
+      if (userExist) {
+        Get.offAllNamed(AppPages.DASHBOARD);
+      } else {
+        hiveBox.delete('uid');
+        Get.offAllNamed(AppPages.LOGIN);
+      }
+    } else {
+      Get.offAllNamed(AppPages.LOGIN);
+    }
+  }
+
+  Future<bool> isUserExist(String uid) async {
+    try {
+      User? user = await FirebaseAuth.instance
+          .userChanges()
+          .firstWhere((element) => element?.uid == uid);
+
+      return user != null;
+    } catch (e) {
+      print('Error checking user $e');
+      return false;
+    }
   }
 }

@@ -7,8 +7,8 @@ import 'package:morent/app/routes/app_pages.dart';
 
 import '../controllers/dashboard_controller.dart';
 
-class BottomNavView extends GetView<DashboardController> {
-  const BottomNavView({Key? key}) : super(key: key);
+class DashboardView extends GetView<DashboardController> {
+  const DashboardView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
