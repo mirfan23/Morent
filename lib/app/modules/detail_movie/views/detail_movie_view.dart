@@ -31,7 +31,7 @@ class DetailMovieView extends GetView<DetailMovieController> {
                   clipBehavior: Clip.none,
                   children: [
                     Container(
-                      height: 240,
+                      height: 200.h,
                       color: Colors.grey.shade200,
                       child: Image.network(
                         '${controller.backdropUrl}${detailMovie.backdropPath}',
@@ -39,19 +39,30 @@ class DetailMovieView extends GetView<DetailMovieController> {
                       ),
                     ),
                     Container(
-                      height: 240,
+                      height: 200.h,
                       color: Colors.black.withOpacity(0.5),
                     ),
                     Positioned(
-                      left: 10,
-                      top: 150,
+                      left: 10.h,
+                      top: 130.h,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10.0),
                         child: Image.network(
                           '${controller.posterImageUrl}${detailMovie.posterPath}',
-                          width: 125,
-                          height: 165,
+                          width: 100.h,
+                          height: 140.h,
                           fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: 130.h,
+                      top: 230.h,
+                      child: Text(
+                        detailMovie.title ?? '',
+                        style: TextStyle(
+                          fontSize: 26.sp,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
@@ -68,13 +79,6 @@ class DetailMovieView extends GetView<DetailMovieController> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          detailMovie.title ?? '',
-                          style: TextStyle(
-                            fontSize: 26.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
                         SizedBox(height: 16.h),
                         Row(
                           children: [

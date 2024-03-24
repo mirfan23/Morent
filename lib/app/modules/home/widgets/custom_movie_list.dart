@@ -8,7 +8,7 @@ class MovieList extends StatelessWidget {
   final RxBool isLoading;
   final RxBool isError;
   final List<MovieModel> movies;
-  final String imageUrl;
+  final String? imageUrl;
 
   const MovieList({
     Key? key,
@@ -48,7 +48,6 @@ class MovieList extends StatelessWidget {
                       return GestureDetector(
                         onTap: () {
                           final movieId = movie.id;
-                          print('error movieId: $movieId');
                           Get.toNamed(
                             AppPages.DETAIL_MOVIE,
                             arguments: movieId,
@@ -71,8 +70,23 @@ class MovieList extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(height: 5.h),
-                              Text(movie.title ?? ''),
-                              Text(movie.releaseDate.toString()),
+                              Text(
+                                movie.title ?? '',
+                                style: TextStyle(fontSize: 18.sp),
+                              ),
+                              SizedBox(height: 5.h),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.date_range,
+                                    size: 12.sp,
+                                  ),
+                                  Text(
+                                    movie.releaseDate?.toString() ?? '',
+                                    style: TextStyle(fontSize: 14.sp),
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
                         ),
