@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import 'package:morent/app/data/models/trending_movie_model.dart';
+import 'package:morent/app/data/models/movie_model.dart';
 import 'package:morent/app/data/provider/movie_api.dart';
 import 'package:morent/app/data/services/trending_movie/trending_repository.dart';
 
@@ -14,7 +14,7 @@ class TrendingService extends GetxService {
     return this;
   }
 
-  final trendingMovie = <TrendingMovie>[].obs;
+  final trendingMovie = <MovieModel>[].obs;
 
   Future<void> fetchTrendingMovies(String period) async {
     try {

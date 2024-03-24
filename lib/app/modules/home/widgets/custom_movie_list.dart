@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:morent/app/data/models/trending_movie_model.dart';
+import 'package:morent/app/data/models/movie_model.dart';
+import 'package:morent/app/routes/app_pages.dart';
 
 class MovieList extends StatelessWidget {
   final RxBool isLoading;
   final RxBool isError;
-  final List<TrendingMovie> movies;
+  final List<MovieModel> movies;
   final String imageUrl;
 
   const MovieList({
@@ -45,7 +46,14 @@ class MovieList extends StatelessWidget {
                     itemBuilder: (context, index) {
                       final movie = movies[index];
                       return GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          final movieId = movie.id;
+                          print('error movieId: $movieId');
+                          Get.toNamed(
+                            AppPages.DETAIL_MOVIE,
+                            arguments: movieId,
+                          );
+                        },
                         child: Container(
                           margin: EdgeInsets.symmetric(horizontal: 5.w),
                           decoration: BoxDecoration(

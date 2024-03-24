@@ -1,18 +1,22 @@
 import 'package:get/get.dart';
-import 'package:morent/app/data/models/trending_movie_model.dart';
+import 'package:morent/app/data/models/movie_model.dart';
 import 'package:morent/app/data/services/trending_movie/trending_service.dart';
 
 class HomeController extends GetxController {
   late TrendingService trendingService;
 
+  /*Trending Day*/
   var isLoadingDay = true.obs;
-  var isLoadingWeek = true.obs;
   var isErrorDay = false.obs;
-  var isErrorWeek = false.obs;
-  var trendingMoviesDay = <TrendingMovie>[].obs;
-  var trendingMoviesWeek = <TrendingMovie>[].obs;
+  var trendingMoviesDay = <MovieModel>[].obs;
 
-  var selectedPeriod = 'Day'.obs; // Default selected period is Day
+  /*Trending Week*/
+  var isLoadingWeek = true.obs;
+  var isErrorWeek = false.obs;
+  var trendingMoviesWeek = <MovieModel>[].obs;
+
+  /*Default Value for Toggle Button*/
+  var selectedPeriod = 'Day'.obs;
 
   @override
   void onInit() {
@@ -22,6 +26,7 @@ class HomeController extends GetxController {
     fetchTrendingMovieWeek();
   }
 
+  /*Fetching Trending Movie Day*/
   Future<void> fetchTrendingMovieDay() async {
     try {
       isLoadingDay(true);
@@ -37,6 +42,7 @@ class HomeController extends GetxController {
     }
   }
 
+  /*Fetching Trending Movie Week*/
   Future<void> fetchTrendingMovieWeek() async {
     try {
       isLoadingWeek(true);
@@ -52,7 +58,8 @@ class HomeController extends GetxController {
     }
   }
 
-  List<TrendingMovie> get selectedMovies {
+  /*For Toggle Button show Data*/
+  List<MovieModel> get selectedMovies {
     if (selectedPeriod.value == 'Day') {
       return trendingMoviesDay;
     } else {

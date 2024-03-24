@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:morent/app/data/models/trending_movie_response.dart';
+import 'package:morent/app/data/models/detail_response.dart';
+import 'package:morent/app/data/models/movie_response.dart';
 
 class MovieApi {
   final Dio dio;
@@ -10,9 +11,10 @@ class MovieApi {
   Future<MovieResponse> getTrendingMovie(String period) async {
     try {
       final accessToken = dotenv.env['ACCESS_TOKEN'];
+      final baseUrl = dotenv.env['BASE_URL'];
 
-      String trendingMovieUrl =
-          'https://api.themoviedb.org/3/trending/movie/$period';
+      String trendingMovieUrl = '$baseUrl/trending/movie/$period';
+
       final response = await dio.get(
         trendingMovieUrl,
         options: Options(
@@ -30,6 +32,35 @@ class MovieApi {
       }
     } catch (e) {
       throw Exception('Error fetching trending movies: $e');
+    }
+  }
+
+  Future<DetailMovieResponse> getDetailMovie(int movieId) async {
+    try {
+      final accessToken = dotenv.env['ACCESS_TOKEN'];
+      final baseUrl = dotenv.env['BASE_URL'];
+
+      String detailMovieUrl = '$baseUrl/movie/$movieId';
+
+      final response = await dio.get(
+        detailMovieUrl,
+        options: Options(
+          headers: {
+            'accept': 'application/json',
+            'Authorization': 'Bearer $accessToken',
+          },
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        final responseData = response.data;
+        print('Error TRY Provider: $responseData');
+        return DetailMovieResponse.fromJson(responseData);
+      } else {
+        throw Exception('Failed to load detail: $response');
+      }
+    } catch (e) {
+      throw Exception('Error Fetching Detail Provider: $e');
     }
   }
 }

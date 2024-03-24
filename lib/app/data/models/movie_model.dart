@@ -1,4 +1,4 @@
-class TrendingMovie {
+class MovieModel {
   final bool? adult;
   final String? backdropPath;
   final int? id;
@@ -15,7 +15,7 @@ class TrendingMovie {
   final double? voteAverage;
   final int? voteCount;
 
-  TrendingMovie({
+  MovieModel({
     this.adult,
     this.backdropPath,
     this.id,
@@ -33,8 +33,8 @@ class TrendingMovie {
     this.voteCount,
   });
 
-  factory TrendingMovie.fromJson(Map<String, dynamic> json) {
-    return TrendingMovie(
+  factory MovieModel.fromJson(Map<String, dynamic> json) {
+    return MovieModel(
       adult: json['adult'],
       backdropPath: json['backdrop_path'],
       id: json['id'],

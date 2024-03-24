@@ -1,4 +1,4 @@
-import 'package:morent/app/data/models/trending_movie_response.dart';
+import 'package:morent/app/data/models/movie_response.dart';
 import 'package:morent/app/data/provider/movie_api.dart';
 
 class TrendingRepository {
