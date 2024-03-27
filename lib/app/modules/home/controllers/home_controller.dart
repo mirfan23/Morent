@@ -8,7 +8,10 @@ class HomeController extends GetxController {
   late TrendingService trendingService;
   late PopularService popularService;
 
+  var activeIndex = 0.obs;
+
   final posterImageUrl = dotenv.env['IMAGE_POSTER'];
+  final backdropUrl = dotenv.env['IMAGE_BACKDROP'];
 
   /*Trending Day*/
   var isLoadingDay = true.obs;
@@ -27,6 +30,10 @@ class HomeController extends GetxController {
 
   /*Default Value for Toggle Button*/
   var selectedPeriod = 'Day'.obs;
+
+  void indexchange(int index) {
+    activeIndex.value = index;
+  }
 
   @override
   void onInit() {

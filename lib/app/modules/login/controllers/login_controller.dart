@@ -58,16 +58,13 @@ class LoginController extends GetxController {
   }
 
   Future<void> checkLoginStatus() async {
+    print('Memeriksa status login...');
     String? uid = hiveBox.get('uid');
+    print('UID yang ditemukan: $uid');
     if (uid != null) {
-      bool userExist = await isUserExist(uid);
-      if (userExist) {
-        Get.offAllNamed(AppPages.DASHBOARD);
-      } else {
-        hiveBox.delete('uid');
-        Get.offAllNamed(AppPages.LOGIN);
-      }
+      Get.offAllNamed(AppPages.DASHBOARD);
     } else {
+      print('UID tidak ditemukan, menuju halaman login...');
       Get.offAllNamed(AppPages.LOGIN);
     }
   }
