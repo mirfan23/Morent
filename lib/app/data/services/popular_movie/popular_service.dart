@@ -22,7 +22,7 @@ class PopularService extends GetxService {
       final poularMovieResponse = await repository.getPopularMovie();
       poularMovie.assignAll(poularMovieResponse.results);
     } catch (e) {
-      print('Error fetching trending movies: $e');
+      print('Error fetching Popular movies: $e');
     }
   }
 }

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:morent/app/modules/home/controllers/home_controller.dart';
 import 'package:morent/app/modules/home/views/home_view.dart';
 import 'package:morent/app/modules/my_token/controllers/my_token_controller.dart';
-import 'package:morent/app/modules/search/views/search_view.dart';
+import 'package:morent/app/modules/search_page/views/search_page_view.dart';
 import 'package:morent/app/modules/transaction_history/views/transaction_history_view.dart';
 import 'package:morent/app/modules/wishlist/views/wishlist_view.dart';
 
@@ -14,7 +14,7 @@ class DashboardController extends GetxController {
 
   final List<Widget> pages = [
     const HomeView(),
-    const SearchView(),
+    const SearchPageView(),
     const WishlistView(),
     const TransactionHistoryView(),
   ];

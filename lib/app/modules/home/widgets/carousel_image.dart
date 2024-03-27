@@ -44,11 +44,11 @@ class CarouselImage extends StatelessWidget {
                   Positioned(
                     bottom: 50.h,
                     child: Center(
-                      child: Text(
-                        movies[index].title ?? '',
-                        style: TextStyle(color: Colors.white, fontSize: 24.sp),
-                      ),
-                    ),
+                        // child: Text(
+                        //   movies[index].title ?? '',
+                        //   style: TextStyle(color: Colors.white, fontSize: 24.sp),
+                        // ),
+                        ),
                   ),
                 ],
               ),
@@ -66,9 +66,11 @@ class CarouselImage extends StatelessWidget {
           ),
         ),
         Positioned(
-          left: 115.h,
-          bottom: 25,
-          child: buildIndicator(movies, controller),
+          width: 300.h,
+          bottom: 25.h,
+          child: Center(
+            child: buildIndicator(movies, controller),
+          ),
         ),
       ],
     );
@@ -90,7 +92,7 @@ class CarouselImage extends StatelessWidget {
         () => AnimatedSmoothIndicator(
           activeIndex: controller.activeIndex.value,
           count: itemCount,
-          effect: const ExpandingDotsEffect(
+          effect: const WormEffect(
             dotHeight: 10,
             dotWidth: 14,
           ),

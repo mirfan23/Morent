@@ -14,8 +14,8 @@ import '../modules/my_token/bindings/my_token_binding.dart';
 import '../modules/my_token/views/my_token_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
-import '../modules/search/bindings/search_binding.dart';
-import '../modules/search/views/search_view.dart';
+import '../modules/search_page/bindings/search_page_binding.dart';
+import '../modules/search_page/views/search_page_view.dart';
 import '../modules/splash_screen/bindings/splash_screen_binding.dart';
 import '../modules/splash_screen/views/splash_screen_view.dart';
 import '../modules/transaction_history/bindings/transaction_history_binding.dart';
@@ -34,7 +34,7 @@ class AppPages {
   static const LOGIN = Routes.LOGIN;
   static const REGISTER = Routes.REGISTER;
   static const HOME = Routes.HOME;
-  static const SEARCH = Routes.SEARCH;
+  static const SEARCH = Routes.SEARCH_PAGE;
   static const WISHLIST = Routes.WISHLIST;
   static const TRANSACTION_HISTORY = Routes.TRANSACTION_HISTORY;
   static const DASHBOARD = Routes.DASHBOARD;
@@ -69,11 +69,6 @@ class AppPages {
       binding: DashboardBinding(),
     ),
     GetPage(
-      name: _Paths.SEARCH,
-      page: () => const SearchView(),
-      binding: SearchBinding(),
-    ),
-    GetPage(
       name: _Paths.WISHLIST,
       page: () => const WishlistView(),
       binding: WishlistBinding(),
@@ -97,6 +92,11 @@ class AppPages {
       name: _Paths.DETAIL_MOVIE,
       page: () => const DetailMovieView(),
       binding: DetailMovieBinding(),
+    ),
+    GetPage(
+      name: _Paths.SEARCH_PAGE,
+      page: () => const SearchPageView(),
+      binding: SearchPageBinding(),
     ),
   ];
 }

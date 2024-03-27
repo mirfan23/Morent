@@ -70,9 +70,12 @@ class MovieList extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(height: 5.h),
-                              Text(
-                                movie.title ?? '',
-                                style: TextStyle(fontSize: 18.sp),
+                              Expanded(
+                                child: Text(
+                                  movie.title ?? '',
+                                  style: TextStyle(fontSize: 18.sp),
+                                  maxLines: 2,
+                                ),
                               ),
                               SizedBox(height: 5.h),
                               Row(

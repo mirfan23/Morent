@@ -10,7 +10,7 @@ class HomeController extends GetxController {
 
   var activeIndex = 0.obs;
 
-  final posterImageUrl = dotenv.env['IMAGE_POSTER'];
+  final posterImageUrl = dotenv.env['IMAGE_POSTER_500'];
   final backdropUrl = dotenv.env['IMAGE_BACKDROP'];
 
   /*Trending Day*/

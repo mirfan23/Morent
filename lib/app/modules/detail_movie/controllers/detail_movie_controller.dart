@@ -10,7 +10,7 @@ class DetailMovieController extends GetxController {
   var isError = false.obs;
   var detailMovie = DetailMovieResponse().obs;
 
-  final posterImageUrl = dotenv.env['IMAGE_POSTER'];
+  final posterImageUrl = dotenv.env['IMAGE_POSTER_500'];
   final backdropUrl = dotenv.env['IMAGE_BACKDROP'];
 
   @override
