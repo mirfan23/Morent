@@ -4,19 +4,23 @@ import 'package:get/get.dart';
 import 'package:morent/app/modules/home/controllers/home_controller.dart';
 
 class CustomTitle extends StatelessWidget {
-  const CustomTitle({
-    Key? key,
-    required this.controller,
-    required this.title,
-    this.showButton = true,
-  }) : super(key: key);
+  const CustomTitle(
+      {Key? key,
+      required this.controller,
+      required this.title,
+      this.showButton = true,
+      this.alternateController})
+      : super(key: key);
 
-  final HomeController controller;
+  final HomeController? controller;
   final String title;
   final bool showButton;
+  final HomeController? alternateController;
 
   @override
   Widget build(BuildContext context) {
+    final currentController = alternateController ?? controller;
+
     return Row(
       children: [
         Padding(
@@ -35,14 +39,14 @@ class CustomTitle extends StatelessWidget {
             child: Obx(
               () => ToggleButtons(
                 isSelected: [
-                  controller.selectedPeriod.value == 'Day',
-                  controller.selectedPeriod.value == 'Week',
+                  currentController?.selectedPeriod.value == 'Day',
+                  currentController?.selectedPeriod.value == 'Week',
                 ],
                 onPressed: (int index) {
                   if (index == 0) {
-                    controller.selectedPeriod.value = 'Day';
+                    currentController?.selectedPeriod.value = 'Day';
                   } else {
-                    controller.selectedPeriod.value = 'Week';
+                    currentController?.selectedPeriod.value = 'Week';
                   }
                 },
                 borderRadius: BorderRadius.circular(50),

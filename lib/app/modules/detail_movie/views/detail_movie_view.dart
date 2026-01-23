@@ -92,7 +92,15 @@ class DetailMovieView extends GetView<DetailMovieController> {
                             SizedBox(width: 16.h),
                             const Icon(Icons.local_movies),
                             SizedBox(width: 8.h),
-                            const Text('Action'),
+                            Expanded(
+                              child: Text(
+                                '${detailMovie.genres?.map((e) => e.name).join(" , ")}'
+                                    .replaceAll('(', '')
+                                    .replaceAll(')', ''),
+                                maxLines: 4,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
                           ],
                         ),
                         SizedBox(height: 16.h),
@@ -112,6 +120,29 @@ class DetailMovieView extends GetView<DetailMovieController> {
                             fontSize: 16.sp,
                           ),
                         ),
+                        SizedBox(height: 8.h),
+                        Text(
+                          'Company',
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 8.h),
+                        Text(
+                          '${detailMovie.productionCompanies?.map(
+                                    (company) => company.name,
+                                  ).join(" , ")}'
+                              .replaceAll('(', '')
+                              .replaceAll(')', ''),
+                        ),
+                        // Image.network(
+                        //   '${detailMovie.productionCompanies?.map(
+                        //     (company) =>
+                        //         controller.posterImageUrl! + company.logoPath!,
+                        //   )}',
+                        // ),
                       ],
                     ),
                   ),

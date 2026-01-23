@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:morent/app/modules/home/controllers/home_controller.dart';
+import 'package:morent/app/modules/home/widgets/carousel_image.dart';
 import 'package:morent/app/modules/home/widgets/custom_movie_list.dart';
 import 'package:morent/app/modules/home/widgets/custom_title.dart';
+import 'package:morent/app/routes/app_pages.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
@@ -15,6 +17,11 @@ class HomeView extends GetView<HomeController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            CarouselImage(
+              itemCount: 3,
+              controller: controller,
+              movies: controller.popularMovies,
+            ),
             CustomTitle(
               title: "Trending Movie",
               controller: controller,
